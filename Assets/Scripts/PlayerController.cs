@@ -19,5 +19,8 @@ public class PlayerController : MonoBehaviour
         if(other.transform.tag == "Platform"){
             onPlatform = true;
         }
+        if(other.transform.tag == "Plane"){
+            FindObjectOfType<GameManager>().GameOver();
+        }
     }
 }

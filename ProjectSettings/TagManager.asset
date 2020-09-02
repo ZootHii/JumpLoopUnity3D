@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Cylinder
+  - Plane
   layers:
   - Default
   - TransparentFX
