@@ -25,11 +25,6 @@ public class PlayerController : MonoBehaviour
         {
             onPlatform = true;
         }
-        if (other.transform.tag == "Plane")
-        {
-            GameManager.instance.GameOver();
-        }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +34,10 @@ public class PlayerController : MonoBehaviour
             ScoreManager.instance.IncreaseScore();
             CylinderBehaviour.instance.IncreaseSpeed();
             PlatformBehaviour.instance.IncreaseScale();
+        }
+        if (other.transform.tag == "Plane")
+        {
+            GameManager.instance.GameOver();
         }
     }
 
