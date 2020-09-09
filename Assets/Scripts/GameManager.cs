@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
     public GameObject startMenu;
     public GameObject userNamePanel;
     public Text userNameText;
+    public Text userNumber1;
+    public Text scoreNumber1;
+
+    public int highest1Index;
+
     private bool gameOver = false;
 
     private void Awake()
@@ -96,11 +102,35 @@ public class GameManager : MonoBehaviour
         }
 
         PlayerPrefs.SetString("UserName", userNameText.text.ToString());
-        User user = new User(PlayerPrefs.GetString("UserName"), ScoreManager.instance.menuHighScoreInt);//her tıklamada high score reset
+        User user = new User(PlayerPrefs.GetString("UserName"), ScoreManager.instance.menuHighScoreInt); //her tıklamada high score reset
         FireBaseManager.instance.AddDatabase(user);
         userNamePanel.SetActive(false);
-        Debug.Log(PlayerPrefs.GetString("UserName"));
+        //Debug.Log(PlayerPrefs.GetString("UserName"));
         return true;
-
     }
+
+    public void SetLeaderBoard()
+    {
+        
+        int highest1;
+        int highest2;
+        int highest3;
+        int highest4;
+        int highest5;
+
+        for (int i = 1; i < FireBaseManager.instance.userList.Count; i++)
+        {
+            highest1 = FireBaseManager.instance.userList[0].score;
+
+            if(highest1 < FireBaseManager.instance.userList[i].score){
+                highest1 = FireBaseManager.instance.userList[i].score;
+                highest1Index = i;
+        }
+        
+
+
+        userNumber1.text = FireBaseManager.instance.userList[highest1Index].username;
+        scoreNumber1.text = FireBaseManager.instance.userList[highest1Index].score.ToString();
+    }
+
 }

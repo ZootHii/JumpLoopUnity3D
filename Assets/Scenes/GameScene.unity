@@ -664,6 +664,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286471660}
   m_CullTransparentMesh: 0
+--- !u!1 &302185482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302185484}
+  - component: {fileID: 302185483}
+  m_Layer: 0
+  m_Name: Static Coroutine RestClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &302185483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302185482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2005550942}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &302185484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302185482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306322231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1552,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1719960211}
+        m_MethodName: SetLeaderBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &520251466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,6 +1919,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1719960211}
         m_MethodName: ShowRank
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1719960211}
+        m_MethodName: SetLeaderBoard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4359,6 +4424,9 @@ MonoBehaviour:
   startMenu: {fileID: 399648527}
   userNamePanel: {fileID: 1911071090}
   userNameText: {fileID: 1009324045}
+  userNumber1: {fileID: 445005173}
+  scoreNumber1: {fileID: 1118179385}
+  highest1Index: 0
 --- !u!1 &1728107270
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,6 +4772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047977b901e99334fac4350ad77bc696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyList: []
+  urlList: []
 --- !u!1 &1911071090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,6 +5161,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.78431374}
   m_EffectDistance: {x: 0, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!115 &2005550942
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 5
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: StaticCoroutine/CoroutineHolder
+  m_Namespace: Proyecto26
 --- !u!1 &2036677617
 GameObject:
   m_ObjectHideFlags: 0
