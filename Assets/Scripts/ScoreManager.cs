@@ -45,5 +45,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetHighScore()
     {
         PlayerPrefs.DeleteKey("HighScore");
+        menuHighScoreInt = 0;
+        menuHighScoreText.text = menuHighScoreInt.ToString();
     }
 }

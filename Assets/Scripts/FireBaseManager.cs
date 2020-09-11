@@ -25,6 +25,7 @@ public class FireBaseManager : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         RetrieveDatabase();
+
     }
 
     public void AddDatabase(User user)
@@ -65,7 +66,6 @@ public class FireBaseManager : MonoBehaviour
 
                         dict.TryGetValue("score", out sc);
                         dict.TryGetValue("username", out un);
-                        Debug.Log(un + " " + sc);
 
                         scS = sc.ToString();
                         scI = int.Parse(scS);

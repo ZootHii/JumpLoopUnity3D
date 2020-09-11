@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 
+
 public class GameManager : MonoBehaviour
 {
-    //public float delay = 1f;
     public static GameManager instance;
     public GameObject menuUI;
     public GameObject rankUI;
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject game;
     public GameObject startMenu;
     public GameObject userNamePanel;
+    public GameObject resetUserNamePanel;
+    public GameObject resetHighScorePanel;
     public Text userNameText;
     public Text[] userRank;
     public Text[] scoreRank;
@@ -28,15 +30,9 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        PlayerPrefs.DeleteKey("UserName");
-    }
-
     public void GameOver()
     {
         gameOver = true;
-        //Invoke("ShowMenu", delay);
         ShowMenu();
     }
 
@@ -48,8 +44,6 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
-        //System.Threading.Thread.Sleep(500);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         startMenu.SetActive(false);
 
@@ -62,7 +56,7 @@ public class GameManager : MonoBehaviour
         game.SetActive(true);
     }
 
-    public void ShowRank()
+    public void ShowRankPanel()
     {
 
         if (IsUserInfoSet())
@@ -75,9 +69,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CloseRank()
+    public void CloseRankPanel()
     {
         rankUI.SetActive(false);
+    }
+
+    public void CloseUserNamePanel()
+    {
+        userNamePanel.SetActive(false);
     }
 
     public bool IsUserInfoSet()
@@ -86,6 +85,15 @@ public class GameManager : MonoBehaviour
         if ((PlayerPrefs.GetString("UserName") == null) || (PlayerPrefs.GetString("UserName") == ""))
         {
             userNamePanel.SetActive(true);
+
+            foreach (var user1 in FireBaseManager.instance.userList)
+            {
+                if (userNameText.text.ToString() == user1.username.ToString())
+                {
+                    return false;
+                }
+            }
+
         }
         else
         {
@@ -103,39 +111,65 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        
-        foreach (var user1 in FireBaseManager.instance.userList)
-        {
-            if(userNameText.text.ToString() == user1.username.ToString()){
-                return false;
-            }
-        }
-
         PlayerPrefs.SetString("UserName", userNameText.text.ToString());
         User user = new User(PlayerPrefs.GetString("UserName"), ScoreManager.instance.menuHighScoreInt); //her tıklamada high score reset
         FireBaseManager.instance.AddDatabase(user);
         userNamePanel.SetActive(false);
-        //Debug.Log(PlayerPrefs.GetString("UserName"));
         return true;
     }
 
     public void SetLeaderBoard()
     {
-
-
         List<User> sortedList = FireBaseManager.instance.userList.OrderByDescending(o => o.score).ToList();
 
-
-        foreach (var user in sortedList)
+        if (sortedList.Count < 5)
         {
-            Debug.Log(user.username + " " + user.score);
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                userRank[i].text = sortedList[i].username;
+                scoreRank[i].text = sortedList[i].score.ToString();
+            }
         }
-
-        for (int i = 0; i < 5; i++)
+        else
         {
-            userRank[i].text = sortedList[i].username;
-            scoreRank[i].text = sortedList[i].score.ToString();
+            for (int i = 0; i < 5; i++)
+            {
+                userRank[i].text = sortedList[i].username;
+                scoreRank[i].text = sortedList[i].score.ToString();
+            }
         }
+    }
 
+    public void ShowResetUserNamePanel()
+    {
+
+        resetUserNamePanel.SetActive(true);
+    }
+
+    public void ResetUserNamePanelButtonYes()
+    {
+        PlayerPrefs.DeleteKey("UserName");
+        resetUserNamePanel.SetActive(false);
+    }
+
+    public void ResetUserNamePanelButtonNo()
+    {
+        resetUserNamePanel.SetActive(false);
+    }
+
+    public void ShowResetHighScorePanel()
+    {
+        resetHighScorePanel.SetActive(true);
+    }
+
+    public void ResetHighScorePanelButtonYes()
+    {
+        ScoreManager.instance.ResetHighScore();
+        resetHighScorePanel.SetActive(false);
+    }
+
+    public void ResetHighScorePanelButtonNo()
+    {
+        resetHighScorePanel.SetActive(false);
     }
 }
