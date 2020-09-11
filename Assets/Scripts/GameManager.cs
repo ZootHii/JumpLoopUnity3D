@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Linq;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject startMenu;
     public GameObject userNamePanel;
     public Text userNameText;
-    public Text userNumber1;
-    public Text scoreNumber1;
+    public Text[] userRank;
+    public Text[] scoreRank;
 
     public int highest1Index;
 
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayerPrefs.DeleteKey("UserName");
+        PlayerPrefs.DeleteKey("UserName");
     }
 
     public void GameOver()
@@ -101,6 +103,14 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
+        
+        foreach (var user1 in FireBaseManager.instance.userList)
+        {
+            if(userNameText.text.ToString() == user1.username.ToString()){
+                return false;
+            }
+        }
+
         PlayerPrefs.SetString("UserName", userNameText.text.ToString());
         User user = new User(PlayerPrefs.GetString("UserName"), ScoreManager.instance.menuHighScoreInt); //her tıklamada high score reset
         FireBaseManager.instance.AddDatabase(user);
@@ -111,26 +121,21 @@ public class GameManager : MonoBehaviour
 
     public void SetLeaderBoard()
     {
-        
-        int highest1;
-        int highest2;
-        int highest3;
-        int highest4;
-        int highest5;
 
-        for (int i = 1; i < FireBaseManager.instance.userList.Count; i++)
+
+        List<User> sortedList = FireBaseManager.instance.userList.OrderByDescending(o => o.score).ToList();
+
+
+        foreach (var user in sortedList)
         {
-            highest1 = FireBaseManager.instance.userList[0].score;
-
-            if(highest1 < FireBaseManager.instance.userList[i].score){
-                highest1 = FireBaseManager.instance.userList[i].score;
-                highest1Index = i;
+            Debug.Log(user.username + " " + user.score);
         }
-        
 
+        for (int i = 0; i < 5; i++)
+        {
+            userRank[i].text = sortedList[i].username;
+            scoreRank[i].text = sortedList[i].score.ToString();
+        }
 
-        userNumber1.text = FireBaseManager.instance.userList[highest1Index].username;
-        scoreNumber1.text = FireBaseManager.instance.userList[highest1Index].score.ToString();
     }
-
 }

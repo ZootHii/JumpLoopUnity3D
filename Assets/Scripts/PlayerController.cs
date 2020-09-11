@@ -2,10 +2,9 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float jumpPower;
+    public float jumpPower = 22;
     public Rigidbody playerRB;
     private bool onPlatform = true;
-
 
     private void Update()
     {

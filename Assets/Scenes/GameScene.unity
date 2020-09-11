@@ -2916,7 +2916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e1247f2695c8a448a89321607d7e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 24
+  jumpPower: 22
   playerRB: {fileID: 966331810}
 --- !u!1 &1000887422
 GameObject:
@@ -3971,7 +3971,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rank
+  m_Text: First 5
 --- !u!222 &1538826294
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4424,8 +4424,18 @@ MonoBehaviour:
   startMenu: {fileID: 399648527}
   userNamePanel: {fileID: 1911071090}
   userNameText: {fileID: 1009324045}
-  userNumber1: {fileID: 445005173}
-  scoreNumber1: {fileID: 1118179385}
+  userRank:
+  - {fileID: 445005173}
+  - {fileID: 1598486743}
+  - {fileID: 618110159}
+  - {fileID: 1000887424}
+  - {fileID: 1728107272}
+  scoreRank:
+  - {fileID: 1118179385}
+  - {fileID: 1741512538}
+  - {fileID: 2044011297}
+  - {fileID: 1457191441}
+  - {fileID: 360023754}
   highest1Index: 0
 --- !u!1 &1728107270
 GameObject:
