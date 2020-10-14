@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformBehaviour : MonoBehaviour
 {
     public static PlatformBehaviour instance;
-
+    
     public float scaleX = 2.0f;
     public float scaleZ = 2.0f;
 

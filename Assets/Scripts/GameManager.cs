@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     private bool gameOver = false;
 
+
+
     private void Awake()
     {
         instance = this;

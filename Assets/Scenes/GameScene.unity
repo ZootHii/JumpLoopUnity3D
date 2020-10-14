@@ -2748,7 +2748,6 @@ GameObject:
   - component: {fileID: 898279096}
   - component: {fileID: 898279100}
   - component: {fileID: 898279101}
-  - component: {fileID: 898279102}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Cylinder
@@ -2763,11 +2762,11 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898279095}
-  m_Material: {fileID: 13400000, guid: a48634f02746d194f88252d338c7d2e9, type: 2}
+  m_Material: {fileID: 13400000, guid: 8308719a6cd99574e91af4bdd26c1063, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.52
-  m_Height: 2
+  m_Radius: 0.55
+  m_Height: 2.1
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &898279097
@@ -2841,14 +2840,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898279095}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &898279101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2861,20 +2860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e489ef624214e52438ccbd3dc27163fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 35
---- !u!65 &898279102
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898279095}
-  m_Material: {fileID: 13400000, guid: a48634f02746d194f88252d338c7d2e9, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  speed: 36
 --- !u!1 &919770400
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,7 +3367,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966331805}
-  m_Material: {fileID: 13400000, guid: a48634f02746d194f88252d338c7d2e9, type: 2}
+  m_Material: {fileID: 13400000, guid: 8308719a6cd99574e91af4bdd26c1063, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3441,7 +3427,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966331805}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -400.05716, y: -299.27765, z: 8.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3463,7 +3449,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &966331811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4526,7 +4512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1371846426
 Transform:
   m_ObjectHideFlags: 0
@@ -5307,7 +5293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1594914655
 MonoBehaviour:
   m_ObjectHideFlags: 0

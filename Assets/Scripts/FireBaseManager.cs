@@ -7,7 +7,6 @@ using UnityEngine;
 public class FireBaseManager : MonoBehaviour
 {
     public static FireBaseManager instance;
-
     DatabaseReference reference;
 
     public List<string> keyList = new List<string>();
@@ -19,6 +18,7 @@ public class FireBaseManager : MonoBehaviour
     {
         instance = this;
     }
+    
     private void Start()
     {
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://jumploop-9c669.firebaseio.com/");

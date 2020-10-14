@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-
+    
     public static ScoreManager instance;
     public Text gameScoreText;
     public Text menuScoreText;

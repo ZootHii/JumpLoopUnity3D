@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    
+
     public Transform playerTransform;
 
     private void FixedUpdate()
