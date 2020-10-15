@@ -9,6 +9,7 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public GameObject player;
     public GameObject menuUI;
     public GameObject rankUI;
     public GameObject canvasGameScore;
@@ -18,14 +19,13 @@ public class GameManager : MonoBehaviour
     public GameObject resetUserNamePanel;
     public GameObject resetHighScorePanel;
     public Text userNameText;
-    public Text[] userRank;
-    public Text[] scoreRank;
 
-    public int highest1Index;
+    //private bool gameOver = false;
 
-    private bool gameOver = false;
-
-
+    private void Start()
+    {
+        PlayerPrefs.SetInt("UserIn", 0);
+    }
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameOver = true;
+        //gameOver = true;
         ShowMenu();
     }
 
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         ScoreManager.instance.ShowScoresOnMenu();
         menuUI.SetActive(true);
+
     }
 
     public void Play()
@@ -57,106 +58,39 @@ public class GameManager : MonoBehaviour
         canvasGameScore.SetActive(true);
         game.SetActive(true);
     }
-
-    public void ShowRankPanel()
+    
+    public void SetScoreToLeaderBoard()
     {
 
-        if (IsUserInfoSet())
+        PlayGamesController.ShowLeaderBoardUI();
+
+        /*if(PlayerPrefs.GetInt("UserIn") == 0)
         {
-            rankUI.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("isim gir"); // uyarı metni göster;
-        }
-    }
-
-    public void CloseRankPanel()
-    {
-        rankUI.SetActive(false);
-    }
-
-    public void CloseUserNamePanel()
-    {
-        userNamePanel.SetActive(false);
-    }
-
-    public bool IsUserInfoSet()
-    {
-
-        if ((PlayerPrefs.GetString("UserName") == null) || (PlayerPrefs.GetString("UserName") == ""))
-        {
-            userNamePanel.SetActive(true);
-
-            foreach (var user1 in FireBaseManager.instance.userList)
+            // check user is in or not;
+            if (PlayGamesController.AuthenticateUser())
             {
-                if (userNameText.text.ToString() == user1.username.ToString())
-                {
-                    return false;
-                }
+                PlayerPrefs.SetInt("UserIn", 1);
             }
-
-        }
-        else
-        {
-            userNamePanel.SetActive(false);
-        }
-
-        userNameText.text = PlayerPrefs.GetString("UserName");
-
-        if ((userNameText.text.ToString() == ""))
-        {
-            return false;
-        }
-        else if ((userNameText.text.ToString() == null))
-        {
-            return false;
-        }
-
-        PlayerPrefs.SetString("UserName", userNameText.text.ToString());
-        User user = new User(PlayerPrefs.GetString("UserName"), ScoreManager.instance.menuHighScoreInt); //her tıklamada high score reset
-        FireBaseManager.instance.AddDatabase(user);
-        userNamePanel.SetActive(false);
-        return true;
-    }
-
-    public void SetLeaderBoard()
-    {
-        List<User> sortedList = FireBaseManager.instance.userList.OrderByDescending(o => o.score).ToList();
-
-        if (sortedList.Count < 5)
-        {
-            for (int i = 0; i < sortedList.Count; i++)
+            else
             {
-                userRank[i].text = sortedList[i].username;
-                scoreRank[i].text = sortedList[i].score.ToString();
+                Debug.Log("giriş yapılamadı");
             }
         }
-        else
+
+        if(PlayerPrefs.GetInt("UserIn") == 1)
         {
-            for (int i = 0; i < 5; i++)
+            //it user is in post score
+            if (PlayGamesController.PostToLeaderBoard(PlayerPrefs.GetInt("HighScore")))
             {
-                userRank[i].text = sortedList[i].username;
-                scoreRank[i].text = sortedList[i].score.ToString();
+                //if score is posted successful show leaderboard
+                PlayGamesController.ShowLeaderBoardUI();
             }
-        }
-    }
+            else
+            {
+                Debug.Log("score gitmedi");
+            }
+        }*/
 
-    public void ShowResetUserNamePanel()
-    {
-
-        resetUserNamePanel.SetActive(true);
-    }
-
-    public void ResetUserNamePanelButtonYes()
-    {
-        PlayerPrefs.DeleteKey("UserName");
-        resetUserNamePanel.SetActive(false);
-    }
-
-    public void ResetUserNamePanelButtonNo()
-    {
-        resetUserNamePanel.SetActive(false);
     }
 
     public void ShowResetHighScorePanel()

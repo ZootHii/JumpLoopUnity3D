@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,9 +9,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-            //jump
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)) 
         {
             if (onPlatform)
             {

@@ -1,4 +1,4 @@
-﻿using Firebase;
+﻿/*using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ public class FireBaseManager : MonoBehaviour
     
     private void Start()
     {
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://jumploop-9c669.firebaseio.com/");
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://jumploop-1eb06.firebaseio.com/");
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         RetrieveDatabase();
@@ -78,4 +78,4 @@ public class FireBaseManager : MonoBehaviour
             }
         });
     }
-}
+}*/
